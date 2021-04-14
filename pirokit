@@ -8,6 +8,11 @@ else
   query=$1
 fi
 
+# Exit the program in case of zero length query
+if [ -z $query ]; then
+  exit
+fi
+
 baseurl="https://1337x.to"
 cachedir="$HOME/.cache/pirokit"
 query="$(sed 's/ /+/g' <<<$query)"
@@ -24,7 +29,6 @@ if [ "$result_count" -lt 1 ]; then
   notify-send "😔 No Result found. Try again 🔴"
   exit 0
 fi
-
 
 # Seeders and Leechers
 grep -o '<td class="coll-2 seeds.*</td>\|<td class="coll-3 leeches.*</td>' $cachedir/tmp.html |
