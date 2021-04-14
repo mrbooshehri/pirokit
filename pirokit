@@ -9,9 +9,7 @@ else
 fi
 
 # Exit the program in case of zero length query
-if [ -z $query ]; then
-  exit
-fi
+[ -z $query ] && exit 1
 
 baseurl="https://1337x.to"
 cachedir="$HOME/.cache/pirokit"
